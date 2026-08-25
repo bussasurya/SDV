@@ -10,4 +10,5 @@ export const db =
     log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
   });
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = db;
+// Always store db in globalThis to reuse Prisma connection pool in serverless environments (e.g. Vercel)
+globalForPrisma.prisma = db;

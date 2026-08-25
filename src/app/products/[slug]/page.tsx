@@ -10,7 +10,8 @@ import { ProductDetailsTabs } from "@/components/product/ProductDetailsTabs";
 import { ProductFaqAccordion } from "@/components/product/ProductFaqAccordion";
 import { RelatedProducts } from "@/components/product/RelatedProducts";
 
-export const dynamic = "force-dynamic";
+// Use Incremental Static Regeneration (ISR) for instant CDN delivery & client navigation performance
+export const revalidate = 60;
 
 interface ProductDetailPageProps {
   params: Promise<{

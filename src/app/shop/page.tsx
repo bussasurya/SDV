@@ -9,7 +9,8 @@ import { ProductCard } from "@/components/ui/ProductCard";
 import { Pagination } from "@/components/shop/Pagination";
 import { EmptyProducts } from "@/components/shop/EmptyProducts";
 
-export const dynamic = "force-dynamic";
+// Use Incremental Static Regeneration (ISR) for instant CDN delivery & client navigation performance
+export const revalidate = 60;
 
 interface ShopPageProps {
   searchParams: Promise<{
@@ -96,7 +97,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   const totalPages = Math.ceil(totalProducts / pageSize);
 
   return (
-    <div className="w-full bg-ayurveda-cream min-h-screen pb-20">
+    <div className="w-full bg-sdv-cream min-h-screen pb-20">
       {/* Header Banner */}
       <ShopHeader
         categoryName={activeCategory?.name}
@@ -147,7 +148,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
                       reviewsCount={product.reviewsCount}
                       imageUrl={
                         product.images[0]?.url ||
-                        "https://images.unsplash.com/photo-1608248597261-23d917f918e9?auto=format&fit=crop&w=800&q=80"
+                        "/images/demo/kashayam.jpg"
                       }
                       isBestSeller={product.isBestSeller}
                       isFeatured={product.isFeatured}

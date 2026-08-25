@@ -9,10 +9,11 @@ import { WhySDV } from "@/components/home/WhySDV";
 import { KnowledgePreview } from "@/components/home/KnowledgePreview";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
-export const dynamic = "force-dynamic"; // Enable dynamic server-side rendering for real-time PostgreSQL database querying
+// Use Incremental Static Regeneration (ISR) for instant CDN delivery & client navigation performance
+export const revalidate = 60;
 
 export default async function HomePage() {
-  // Query database in parallel for optimal Server Component performance
+  // Query database in parallel for optimal build & background revalidation performance
   const [categories, featuredProducts, articles] = await Promise.all([
     db.category.findMany({
       orderBy: { displayOrder: "asc" },
