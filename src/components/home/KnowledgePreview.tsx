@@ -24,54 +24,57 @@ export function KnowledgePreview({ articles }: KnowledgePreviewProps) {
   if (!articles || articles.length === 0) return null;
 
   return (
-    <section className="py-16 sm:py-24 bg-ayurveda-cream">
+    <section className="py-16 sm:py-24 bg-sdv-cream">
       <Container size="lg">
         <SectionHeading
-          eyebrow="Ayurvedic Wellness Journal"
-          title="Knowledge Centre"
-          description="Explore classic remedies, dosha balance guides, and hair/skin health insights written by Ayurvedic physicians."
+          eyebrow="Clinical Perspectives & Guidance"
+          title="From the Physician's Desk"
+          description="Insights into classical Ayurvedic formulations, traditional preparation processes, and wellness principles."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((art) => (
             <article
               key={art.id}
-              className="sdv-card group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-ayurveda-green/10 transition-all duration-300 hover:shadow-elevated"
+              className="sdv-card group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-sdv-border transition-all duration-300 hover:shadow-elevated"
             >
-              <div className="relative aspect-video overflow-hidden bg-ayurveda-cream-surface">
+              <div className="relative aspect-video overflow-hidden bg-sdv-cream">
                 <img
                   src={art.imageUrl}
                   alt={art.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute top-3 left-3">
+                <div className="absolute top-3 left-3 flex items-center gap-2">
+                  <Badge variant="gold" className="text-[10px] font-mono uppercase">
+                    Demo Article
+                  </Badge>
                   <Badge variant="gold">{art.category}</Badge>
                 </div>
               </div>
 
-              <div className="p-6 flex flex-col flex-grow justify-between">
+              <div className="p-6 flex flex-col flex-grow justify-between font-akshar">
                 <div>
-                  <div className="flex items-center gap-2 text-xs text-ayurveda-textMuted mb-3">
+                  <div className="flex items-center gap-2 text-xs text-sdv-muted mb-3">
                     <Clock className="w-3.5 h-3.5" />
                     <span>{art.readTime}</span>
                   </div>
 
-                  <h3 className="font-serif font-bold text-xl text-ayurveda-green group-hover:text-ayurveda-gold-dark transition-colors line-clamp-2 mb-3 leading-snug">
+                  <h3 className="font-oswald font-bold text-xl text-sdv-primary group-hover:text-sdv-green transition-colors line-clamp-2 mb-3 leading-snug uppercase tracking-wide">
                     <Link href={`/knowledge/${art.slug}`}>{art.title}</Link>
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-ayurveda-textMuted line-clamp-3 leading-relaxed mb-4">
+                  <p className="text-xs sm:text-sm text-sdv-muted line-clamp-3 leading-relaxed mb-4">
                     {art.excerpt}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-ayurveda-green/10 flex items-center justify-between mt-auto">
+                <div className="pt-4 border-t border-sdv-border flex items-center justify-between mt-auto">
                   <Link
                     href={`/knowledge/${art.slug}`}
-                    className="text-xs font-bold text-ayurveda-green group-hover:text-ayurveda-gold flex items-center gap-1.5 transition-colors"
+                    className="text-xs font-bold text-sdv-green group-hover:text-sdv-gold flex items-center gap-1.5 transition-colors uppercase tracking-wider"
                   >
-                    <span>Read Full Article</span>
+                    <span>Read Feature Article</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>

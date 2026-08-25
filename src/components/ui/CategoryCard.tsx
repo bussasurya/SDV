@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Sparkles, Scissors, Activity, ShieldAlert, HeartPulse, ArrowRight } from "lucide-react";
+import { getCategoryTheme } from "@/lib/categoryColors";
 
 interface CategoryCardProps {
   name: string;
@@ -15,6 +16,8 @@ export function CategoryCard({
   description,
   iconName,
 }: CategoryCardProps) {
+  const theme = getCategoryTheme(slug);
+
   const getIcon = (name: string) => {
     switch (name) {
       case "Sparkles":
@@ -33,23 +36,26 @@ export function CategoryCard({
   return (
     <Link
       href={`/shop?category=${slug}`}
-      className="sdv-card group p-6 flex flex-col items-start justify-between h-full bg-white hover:bg-ayurveda-green border border-ayurveda-green/10 hover:border-ayurveda-gold/40 transition-all duration-300 rounded-2xl"
+      className="sdv-card group p-6 flex flex-col items-start justify-between h-full bg-white hover:bg-sdv-primary border border-sdv-border transition-all duration-300 rounded-2xl shadow-sm"
     >
       <div>
-        <div className="w-12 h-12 rounded-xl bg-ayurveda-green-mint group-hover:bg-ayurveda-gold text-ayurveda-green group-hover:text-ayurveda-green-dark flex items-center justify-center mb-5 transition-colors shadow-sm">
+        <div
+          className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-colors shadow-sm"
+          style={{ backgroundColor: theme.light, color: theme.base }}
+        >
           {getIcon(iconName || "")}
         </div>
-        <h3 className="font-serif font-bold text-xl text-ayurveda-green group-hover:text-white transition-colors mb-2">
+        <h3 className="font-oswald font-bold text-xl text-sdv-primary group-hover:text-white transition-colors mb-2 uppercase tracking-wide">
           {name}
         </h3>
         {description && (
-          <p className="text-xs text-ayurveda-textMuted group-hover:text-ayurveda-cream/80 line-clamp-2 leading-relaxed transition-colors">
+          <p className="text-xs font-akshar text-sdv-muted group-hover:text-sdv-cream/80 line-clamp-2 leading-relaxed transition-colors">
             {description}
           </p>
         )}
       </div>
 
-      <div className="mt-6 pt-4 border-t border-ayurveda-green/10 group-hover:border-white/10 w-full flex items-center justify-between text-xs font-semibold text-ayurveda-green group-hover:text-ayurveda-gold transition-colors">
+      <div className="mt-6 pt-4 border-t border-sdv-border group-hover:border-white/10 w-full flex items-center justify-between text-xs font-akshar font-bold text-sdv-primary group-hover:text-sdv-gold transition-colors">
         <span>Explore Category</span>
         <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
       </div>

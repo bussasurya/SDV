@@ -3,32 +3,48 @@
 @import "tailwindcss/utilities";
 
 :root {
-  --color-green-primary: #1B3B2B;
-  --color-green-dark: #11261B;
-  --color-green-light: #2C5B43;
-  --color-green-sage: #4A7C59;
+  --sdv-primary: #11222B;
+  --sdv-green: #1F4D3A;
+  --sdv-cream: #F4EEDD;
+  --sdv-gold: #E1B12C;
+  --sdv-gold-secondary: #C9A24D;
+
+  --sdv-background: #F4EEDD;
+  --sdv-foreground: #11222B;
+  --sdv-surface: #FFFFFF;
+  --sdv-surface-cream: #EFE7D3;
+  --sdv-muted: #5B6B6D;
+  --sdv-border: rgba(17, 34, 43, 0.12);
+  --sdv-accent: #E1B12C;
+
+  /* Backward compatibility CSS variables */
+  --color-green-primary: #11222B;
+  --color-green-dark: #0B161C;
+  --color-green-light: #1F4D3A;
+  --color-green-sage: #6E8B6B;
   --color-green-mint: #E8F0EA;
-  --color-cream-bg: #FDFBF7;
-  --color-cream-surface: #F4F0E8;
-  --color-gold: #D4AF37;
-  --color-gold-light: #F3E5AB;
-  --color-charcoal: #2B2D2F;
-  --color-muted: #5A6B5D;
+  --color-cream-bg: #F4EEDD;
+  --color-cream-surface: #EFE7D3;
+  --color-gold: #E1B12C;
+  --color-gold-light: #FFF7D6;
+  --color-charcoal: #11222B;
+  --color-muted: #5B6B6D;
 }
 
 @layer base {
   body {
-    background-color: var(--color-cream-bg);
-    color: var(--color-charcoal);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background-color: var(--sdv-background);
+    color: var(--sdv-foreground);
+    font-family: var(--font-akshar), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Georgia", "Cambria", "Times New Roman", serif;
-    color: var(--color-green-primary);
-    letter-spacing: -0.01em;
+    font-family: var(--font-oswald), sans-serif;
+    color: var(--sdv-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 }
 
@@ -36,22 +52,23 @@
   /* Premium SDV Card Styling */
   .sdv-card {
     background: #ffffff;
-    border: 1px solid rgba(27, 59, 43, 0.08);
+    border: 1px solid var(--sdv-border);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 20px rgba(17, 34, 43, 0.04);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .sdv-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 32px -10px rgba(27, 59, 43, 0.12);
-    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 16px 32px -10px rgba(17, 34, 43, 0.12);
+    border-color: rgba(225, 177, 44, 0.4);
   }
 
   /* SDV Button Styles */
   .btn-ayurveda-primary {
-    background-color: var(--color-green-primary);
+    background-color: var(--sdv-primary);
     color: #ffffff;
+    font-family: var(--font-akshar), sans-serif;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
     border-radius: 9999px;
@@ -63,14 +80,15 @@
   }
 
   .btn-ayurveda-primary:hover {
-    background-color: var(--color-green-dark);
-    box-shadow: 0 4px 14px rgba(27, 59, 43, 0.25);
+    background-color: var(--sdv-green);
+    box-shadow: 0 4px 14px rgba(17, 34, 43, 0.25);
     transform: translateY(-1px);
   }
 
   .btn-ayurveda-gold {
-    background-color: var(--color-gold);
-    color: #1B3B2B;
+    background-color: var(--sdv-gold);
+    color: var(--sdv-primary);
+    font-family: var(--font-akshar), sans-serif;
     font-weight: 700;
     padding: 0.75rem 1.5rem;
     border-radius: 9999px;
@@ -82,14 +100,15 @@
   }
 
   .btn-ayurveda-gold:hover {
-    background-color: #c49f2b;
-    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+    background-color: var(--sdv-gold-secondary);
+    box-shadow: 0 4px 14px rgba(225, 177, 44, 0.35);
     transform: translateY(-1px);
   }
 
   .btn-ayurveda-outline {
-    border: 1.5px solid var(--color-green-primary);
-    color: var(--color-green-primary);
+    border: 1.5px solid var(--sdv-primary);
+    color: var(--sdv-primary);
+    font-family: var(--font-akshar), sans-serif;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
     border-radius: 9999px;
@@ -101,30 +120,32 @@
   }
 
   .btn-ayurveda-outline:hover {
-    background-color: var(--color-green-mint);
-    border-color: var(--color-green-dark);
+    background-color: var(--sdv-primary);
+    color: #ffffff;
   }
 
   /* Badge styling */
   .badge-gold {
-    background-color: rgba(212, 175, 55, 0.15);
-    color: #927515;
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background-color: rgba(225, 177, 44, 0.15);
+    color: var(--sdv-primary);
+    border: 1px solid rgba(225, 177, 44, 0.4);
     padding: 0.25rem 0.75rem;
     border-radius: 9999px;
     font-size: 0.75rem;
+    font-family: var(--font-akshar), sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
   .badge-green {
-    background-color: var(--color-green-mint);
-    color: var(--color-green-primary);
-    border: 1px solid rgba(27, 59, 43, 0.15);
+    background-color: rgba(31, 77, 58, 0.1);
+    color: var(--sdv-green);
+    border: 1px solid rgba(31, 77, 58, 0.2);
     padding: 0.25rem 0.75rem;
     border-radius: 9999px;
     font-size: 0.75rem;
+    font-family: var(--font-akshar), sans-serif;
     font-weight: 600;
     letter-spacing: 0.03em;
   }
@@ -133,7 +154,7 @@
   .gold-divider {
     height: 2px;
     width: 60px;
-    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    background: linear-gradient(90deg, transparent, var(--sdv-gold), transparent);
     margin: 1rem auto;
   }
 }

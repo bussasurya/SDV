@@ -28,18 +28,18 @@ export function SectionHeading({
   };
 
   return (
-    <div className={twMerge(clsx("flex flex-col max-w-3xl mb-12 sm:mb-16", alignmentClasses[align], className))}>
+    <div className={twMerge(clsx("flex flex-col max-w-3xl mb-10 sm:mb-14", alignmentClasses[align], className))}>
       {eyebrow && (
-        <span className="badge-gold mb-3 inline-block">
+        <span className="badge-gold mb-3 inline-block font-akshar">
           {eyebrow}
         </span>
       )}
-      <h2 className={twMerge(clsx("text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-ayurveda-green tracking-tight leading-tight", titleClassName))}>
+      <h2 className={twMerge(clsx("text-3xl sm:text-4xl lg:text-5xl font-oswald font-bold text-sdv-primary uppercase tracking-wide leading-tight", titleClassName))}>
         {title}
       </h2>
-      {showDivider && <div className="gold-divider my-4" />}
+      {showDivider && <div className="gold-divider my-3" />}
       {description && (
-        <p className="text-base sm:text-lg text-ayurveda-textMuted leading-relaxed font-normal mt-2">
+        <p className="text-base sm:text-lg text-sdv-muted leading-relaxed font-normal mt-1 font-akshar">
           {description}
         </p>
       )}

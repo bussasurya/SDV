@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { Star, ArrowRight, Eye } from "lucide-react";
+import { ArrowRight, Eye } from "lucide-react";
 import { Badge } from "./Badge";
+import { getCategoryTheme, getFormulationImage } from "@/lib/categoryColors";
 
 interface ProductCardProps {
   id: string;
@@ -19,57 +20,39 @@ interface ProductCardProps {
 }
 
 export function ProductCard({
-  id,
   name,
   slug,
   categoryName,
   packSize,
-  mrp,
   sellingPrice,
-  rating = 4.9,
-  reviewsCount = 0,
   imageUrl,
-  isBestSeller,
-  isFeatured,
 }: ProductCardProps) {
-  const discountPercent = mrp > sellingPrice ? Math.round(((mrp - sellingPrice) / mrp) * 100) : 0;
-  const isDemoProduct = name.includes("[DEMO");
+  const categoryTheme = getCategoryTheme(categoryName);
+  const displayImage = getFormulationImage(categoryName, imageUrl);
 
   return (
-    <div className="sdv-card group flex flex-col h-full overflow-hidden bg-white border border-ayurveda-green/10 rounded-2xl transition-all duration-300 hover:shadow-elevated hover:border-ayurveda-gold/40">
-      {/* Image & Badges Container */}
-      <div className="relative aspect-square overflow-hidden bg-ayurveda-cream-surface">
+    <div className="sdv-card group flex flex-col h-full overflow-hidden bg-white border border-sdv-border rounded-2xl transition-all duration-300 hover:shadow-elevated hover:border-sdv-gold/40">
+      {/* Image Container */}
+      <div className="relative aspect-square overflow-hidden bg-sdv-cream/50">
         <img
-          src={imageUrl}
+          src={displayImage}
           alt={name}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
           loading="lazy"
         />
 
-        {/* Top Badges */}
+        {/* Top Demo Tag Badge */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
-          {isDemoProduct && (
-            <Badge variant="sage" className="shadow-sm font-mono text-[10px]">
-              Demo Product
-            </Badge>
-          )}
-          {isBestSeller && (
-            <Badge variant="gold" className="shadow-sm">
-              Best Seller
-            </Badge>
-          )}
-          {discountPercent > 0 && (
-            <Badge variant="terracotta" className="shadow-sm">
-              {discountPercent}% OFF
-            </Badge>
-          )}
+          <Badge variant="gold" className="shadow-sm text-[10px] uppercase font-bold font-akshar">
+            Demo Product
+          </Badge>
         </div>
 
         {/* Hover Quick View Overlay */}
-        <div className="absolute inset-0 bg-ayurveda-green-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+        <div className="absolute inset-0 bg-sdv-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
           <Link
             href={`/products/${slug}`}
-            className="btn-ayurveda-gold text-xs px-4 py-2.5 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
+            className="btn-ayurveda-gold text-xs px-4 py-2.5 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 font-akshar"
           >
             <Eye className="w-4 h-4" />
             <span>View Product</span>
@@ -78,45 +61,43 @@ export function ProductCard({
       </div>
 
       {/* Card Content */}
-      <div className="p-5 flex flex-col flex-grow justify-between">
+      <div className="p-5 flex flex-col flex-grow justify-between font-akshar">
         <div>
-          {/* Category & Pack Size */}
-          <div className="flex items-center justify-between text-xs text-ayurveda-textMuted mb-2">
-            <span>{categoryName || "Ayurvedic Formulation"}</span>
-            {packSize && <span className="font-medium bg-ayurveda-cream-surface px-2 py-0.5 rounded text-[11px]">{packSize}</span>}
+          {/* Category Tag with Formulation Colors & Pack Size */}
+          <div className="flex items-center justify-between text-xs mb-2.5">
+            <span
+              className="px-2.5 py-0.5 rounded-full font-semibold text-[11px]"
+              style={{ backgroundColor: categoryTheme.light, color: categoryTheme.base }}
+            >
+              {categoryName || "Ayurvedic Preparation"}
+            </span>
+            {packSize && (
+              <span className="font-medium bg-sdv-cream px-2 py-0.5 rounded text-[11px] text-sdv-muted">
+                {packSize}
+              </span>
+            )}
           </div>
 
           {/* Product Title */}
-          <h3 className="font-serif font-bold text-lg text-ayurveda-green group-hover:text-ayurveda-gold-dark transition-colors line-clamp-2 mb-2 leading-snug">
+          <h3 className="font-akshar font-bold text-base text-sdv-primary group-hover:text-sdv-green transition-colors line-clamp-2 mb-3 leading-snug">
             <Link href={`/products/${slug}`}>{name}</Link>
           </h3>
-
-          {/* Rating */}
-          <div className="flex items-center gap-1.5 text-xs mb-4">
-            <div className="flex items-center text-amber-500">
-              <Star className="w-3.5 h-3.5 fill-amber-500" />
-            </div>
-            <span className="font-bold text-ayurveda-green">{rating.toFixed(1)}</span>
-            <span className="text-ayurveda-textMuted">({reviewsCount})</span>
-          </div>
         </div>
 
         {/* Price & Action */}
-        <div className="pt-3 border-t border-ayurveda-green/10 flex items-center justify-between mt-auto">
+        <div className="pt-3 border-t border-sdv-border flex items-center justify-between mt-auto">
           <div>
-            {mrp > sellingPrice && (
-              <span className="text-xs text-ayurveda-textMuted line-through block leading-none mb-1">
-                ₹{mrp}
-              </span>
-            )}
-            <span className="text-xl font-bold text-ayurveda-green leading-none">
+            <span className="text-[10px] text-sdv-muted font-mono uppercase block leading-none mb-1">
+              Demo Price
+            </span>
+            <span className="text-xl font-oswald font-bold text-sdv-primary leading-none">
               ₹{sellingPrice}
             </span>
           </div>
 
           <Link
             href={`/products/${slug}`}
-            className="w-9 h-9 rounded-full bg-ayurveda-green-mint text-ayurveda-green group-hover:bg-ayurveda-green group-hover:text-white flex items-center justify-center transition-colors shadow-sm"
+            className="w-9 h-9 rounded-full bg-sdv-cream text-sdv-primary group-hover:bg-sdv-primary group-hover:text-white flex items-center justify-center transition-colors shadow-sm"
             aria-label={`View ${name}`}
           >
             <ArrowRight className="w-4 h-4" />

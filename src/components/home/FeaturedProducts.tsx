@@ -26,12 +26,12 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
   if (!products || products.length === 0) return null;
 
   return (
-    <section className="py-16 sm:py-24 bg-white border-y border-ayurveda-green/5">
+    <section className="py-16 sm:py-24 bg-white border-y border-sdv-border">
       <Container size="lg">
         <SectionHeading
           eyebrow="Formulation Highlights"
-          title="Featured Formulations"
-          description="[SDV FEATURED PRODUCTS DESCRIPTION PLACEHOLDER — Product showcase copy to be provided by Client.]"
+          title="Featured Ayurvedic Preparations"
+          description="Traditional Ayurvedic formulations prepared with consistent quality, care, and adherence to classical standards."
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">

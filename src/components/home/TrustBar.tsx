@@ -1,48 +1,54 @@
 import React from "react";
-import { ShieldCheck, Leaf, Truck, Award } from "lucide-react";
+import { ShieldCheck, BookOpen, Clock, Award } from "lucide-react";
 import { Container } from "../ui/Container";
 
 export function TrustBar() {
   const pillars = [
     {
-      icon: <ShieldCheck className="w-6 h-6 text-ayurveda-green" />,
-      title: "[SDV FORMULATION STANDARDS]",
-      description: "[SDV Formulation & Quality Guidelines — To be provided by Client]",
+      icon: <Clock className="w-6 h-6 text-sdv-green" />,
+      title: "Six Decades of Heritage",
+      description: "Established Ayurvedic medicine manufacturer guided by traditional expertise since inception.",
     },
     {
-      icon: <Leaf className="w-6 h-6 text-ayurveda-green" />,
-      title: "[SDV INGREDIENT POLICY]",
-      description: "[SDV Botanical Sourcing & Ingredient Policy — To be provided by Client]",
+      icon: <BookOpen className="w-6 h-6 text-sdv-green" />,
+      title: "Authoritative Classical Texts",
+      description: "Formulations prepared strictly according to Sahasrayoga, Bhaishajyaratnavali, and Ashtanga Hridaya.",
     },
     {
-      icon: <Award className="w-6 h-6 text-ayurveda-green" />,
-      title: "[SDV PREPARATION PROCESS]",
-      description: "[SDV Traditional Preparation Method — To be provided by Client]",
+      icon: <ShieldCheck className="w-6 h-6 text-sdv-green" />,
+      title: "Uncompromising Quality",
+      description: "Dedicated to making authentic Ayurvedic preparations accessible and affordable.",
     },
     {
-      icon: <Truck className="w-6 h-6 text-ayurveda-green" />,
-      title: "[SDV DELIVERY INFORMATION]",
-      description: "[SDV Shipping Rates & Delivery Timelines — To be provided by Client]",
+      icon: (
+        <img
+          src="/brand/gmp-certificate.webp"
+          alt="GMP Certified Quality Assurance"
+          className="w-7 h-7 object-contain"
+        />
+      ),
+      title: "Quality Assurance",
+      description: "Prepared in accordance with established manufacturing standards and traditional care.",
     },
   ];
 
   return (
-    <section className="bg-white py-10 border-b border-ayurveda-green/5">
+    <section className="bg-white py-10 border-b border-sdv-border">
       <Container size="lg">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {pillars.map((item, index) => (
             <div
               key={index}
-              className="flex items-start gap-4 p-4 rounded-xl hover:bg-ayurveda-cream-surface/50 transition-colors"
+              className="flex items-start gap-4 p-4 rounded-xl hover:bg-sdv-cream/40 transition-colors"
             >
-              <div className="p-3 rounded-xl bg-ayurveda-green-mint text-ayurveda-green shrink-0 shadow-sm">
+              <div className="p-3 rounded-xl bg-sdv-cream text-sdv-primary shrink-0 shadow-sm flex items-center justify-center">
                 {item.icon}
               </div>
               <div>
-                <h4 className="font-serif font-bold text-sm text-ayurveda-green">
+                <h4 className="font-oswald font-bold text-sm text-sdv-primary tracking-wide">
                   {item.title}
                 </h4>
-                <p className="text-xs text-ayurveda-textMuted mt-1 leading-relaxed">
+                <p className="text-xs text-sdv-muted mt-1 leading-relaxed">
                   {item.description}
                 </p>
               </div>

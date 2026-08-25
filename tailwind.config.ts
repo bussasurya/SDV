@@ -9,41 +9,54 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        sdv: {
+          primary: "#11222B",      // Official Primary Dark Navy Charcoal
+          green: "#1F4D3A",        // Official Secondary Forest Green
+          cream: "#F4EEDD",        // Official Warm Cream / Ivory Background
+          gold: "#E1B12C",         // Official Gold Accent
+          goldSecondary: "#C9A24D",// Official Secondary Gold
+          surface: "#FFFFFF",      // Clean Surface Card Background
+          surfaceCream: "#EFE7D3", // Secondary Card Surface
+          muted: "#5B6B6D",        // Muted Secondary Text
+          border: "#DED6C4",       // Subtle Border Neutral
+        },
         ayurveda: {
           green: {
-            DEFAULT: "#1B3B2B",
-            dark: "#11261B",
-            light: "#2C5B43",
-            sage: "#4A7C59",
+            DEFAULT: "#11222B",
+            dark: "#0B161C",
+            light: "#1F4D3A",
+            sage: "#6E8B6B",
             mint: "#E8F0EA",
           },
           cream: {
-            DEFAULT: "#FDFBF7",
+            DEFAULT: "#F4EEDD",
             light: "#FFFFFF",
-            dark: "#F4F0E8",
-            sand: "#EAE3D2",
+            dark: "#EFE7D3",
+            sand: "#E4DBC7",
           },
           gold: {
-            DEFAULT: "#D4AF37",
-            light: "#F3E5AB",
-            dark: "#AA8C2C",
+            DEFAULT: "#E1B12C",
+            light: "#FFF7D6",
+            dark: "#C9A24D",
           },
           terracotta: {
-            DEFAULT: "#C86D51",
-            light: "#E59882",
+            DEFAULT: "#9C3F2E",
+            light: "#D8A48F",
           },
-          charcoal: "#2B2D2F",
-          textMuted: "#5A6B5D",
+          charcoal: "#11222B",
+          textMuted: "#5B6B6D",
         },
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Georgia", "Cambria", "serif"],
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        oswald: ["var(--font-oswald)", "sans-serif"],
+        akshar: ["var(--font-akshar)", "sans-serif"],
+        serif: ["var(--font-oswald)", "sans-serif"],
+        sans: ["var(--font-akshar)", "sans-serif"],
       },
       boxShadow: {
-        ayurveda: "0 10px 30px -10px rgba(27, 59, 43, 0.08)",
-        card: "0 4px 20px rgba(0, 0, 0, 0.04)",
-        elevated: "0 20px 40px -15px rgba(27, 59, 43, 0.12)",
+        ayurveda: "0 10px 30px -10px rgba(17, 34, 43, 0.08)",
+        card: "0 4px 20px rgba(17, 34, 43, 0.04)",
+        elevated: "0 20px 40px -15px rgba(17, 34, 43, 0.12)",
       },
       borderRadius: {
         ayurveda: "12px",

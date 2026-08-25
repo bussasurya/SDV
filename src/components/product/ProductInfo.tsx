@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { Star, ShieldCheck, Truck, ShoppingBag, Lock } from "lucide-react";
+import { ShieldCheck, ShoppingBag, Lock, BookOpen } from "lucide-react";
 import { Badge } from "../ui/Badge";
+import { getCategoryTheme } from "@/lib/categoryColors";
 
 interface ProductInfoProps {
   id: string;
@@ -24,133 +25,111 @@ export function ProductInfo({
   categoryName,
   categorySlug,
   packSize,
-  mrp,
   sellingPrice,
   stock,
-  rating,
-  reviewsCount,
   shortDescription,
 }: ProductInfoProps) {
-  const discountPercent = mrp > sellingPrice ? Math.round(((mrp - sellingPrice) / mrp) * 100) : 0;
   const isAvailable = stock > 0;
-  const isDemo = name.includes("[DEMO");
+  const categoryTheme = getCategoryTheme(categorySlug || categoryName);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-akshar">
       {/* Category Link, Pack Size & Demo Indicator */}
       <div className="flex flex-wrap items-center gap-3 text-xs">
-        {isDemo && (
-          <Badge variant="sage" className="font-mono text-[10px]">
-            Demo Product Data
-          </Badge>
-        )}
+        <Badge variant="gold" className="font-akshar text-[10px] uppercase font-bold">
+          Demo Product Data
+        </Badge>
         <Link
           href={`/shop?category=${categorySlug}`}
-          className="text-ayurveda-green font-semibold hover:underline"
+          className="px-2.5 py-0.5 rounded-full font-bold transition-opacity hover:opacity-80"
+          style={{ backgroundColor: categoryTheme.light, color: categoryTheme.base }}
         >
           {categoryName}
         </Link>
-        <span className="text-ayurveda-textMuted">•</span>
-        <span className="bg-white border border-ayurveda-green/15 px-2.5 py-0.5 rounded-full font-medium text-ayurveda-textMuted">
+        <span className="text-sdv-muted">•</span>
+        <span className="bg-white border border-sdv-border px-2.5 py-0.5 rounded-full font-medium text-sdv-muted">
           Pack Size: {packSize}
         </span>
-        <span className="text-ayurveda-textMuted">•</span>
-        <span className="text-ayurveda-textMuted font-mono">SKU: {sku}</span>
+        <span className="text-sdv-muted">•</span>
+        <span className="text-sdv-muted font-mono">SKU: {sku}</span>
       </div>
 
-      {/* Product Title */}
-      <h1 className="text-3xl sm:text-4xl font-serif font-bold text-ayurveda-green leading-tight">
+      {/* Product Title (Akshar Font) */}
+      <h1 className="text-3xl sm:text-4xl font-akshar font-bold text-sdv-primary leading-tight">
         {name}
       </h1>
 
-      {/* Rating & Reviews */}
-      <div className="flex items-center gap-2 text-xs">
-        <div className="flex items-center text-amber-500">
-          <Star className="w-4 h-4 fill-amber-500" />
-        </div>
-        <span className="font-bold text-ayurveda-green text-sm">{rating.toFixed(1)}</span>
-        <span className="text-ayurveda-textMuted">({reviewsCount} reviews)</span>
-      </div>
-
-      {/* Price & Discount Section */}
-      <div className="p-4 rounded-2xl bg-white border border-ayurveda-green/10 flex items-center justify-between">
+      {/* Price Section */}
+      <div className="p-4 rounded-2xl bg-white border border-sdv-border flex items-center justify-between shadow-sm">
         <div>
+          <span className="text-[10px] text-sdv-muted font-mono uppercase block leading-none mb-1">
+            Demo Pricing
+          </span>
           <div className="flex items-baseline gap-3">
-            <span className="text-3xl font-bold text-ayurveda-green">
+            <span className="text-3xl font-oswald font-bold text-sdv-primary">
               ₹{sellingPrice}
             </span>
-            {mrp > sellingPrice && (
-              <span className="text-base text-ayurveda-textMuted line-through">
-                ₹{mrp}
-              </span>
-            )}
           </div>
-          <span className="text-[11px] text-ayurveda-textMuted block mt-1">
-            Inclusive of all taxes
+          <span className="text-[11px] text-sdv-muted block mt-1">
+            Development placeholder price — subject to official SDV catalogue data
           </span>
         </div>
-
-        {discountPercent > 0 && (
-          <Badge variant="terracotta" className="text-xs px-3 py-1">
-            Save {discountPercent}%
-          </Badge>
-        )}
       </div>
 
       {/* Stock Availability Indicator */}
       <div className="flex items-center gap-2 text-xs font-semibold">
         <span className={`w-2.5 h-2.5 rounded-full ${isAvailable ? "bg-emerald-500" : "bg-rose-500"}`} />
         <span className={isAvailable ? "text-emerald-700" : "text-rose-700"}>
-          {isAvailable ? (stock < 10 ? `Low Stock (Only ${stock} left)` : "In Stock — Ready for Dispatch") : "Out of Stock"}
+          {isAvailable ? "In Stock — Demo Inventory Available" : "Out of Stock"}
         </span>
       </div>
 
       {/* Short Description */}
-      <p className="text-sm sm:text-base text-ayurveda-textMuted leading-relaxed border-t border-b border-ayurveda-green/10 py-4">
+      <p className="text-sm sm:text-base text-sdv-muted leading-relaxed border-t border-b border-sdv-border py-4">
         {shortDescription}
       </p>
 
-      {/* Visual Commerce Actions Placeholder Area (Phase 5 Hook) */}
-      <div className="p-5 rounded-2xl bg-ayurveda-cream-surface border border-ayurveda-green/15 space-y-3">
-        <div className="flex items-center justify-between text-xs text-ayurveda-textMuted pb-2 border-b border-ayurveda-green/10">
-          <span className="font-semibold text-ayurveda-green flex items-center gap-1.5">
-            <ShoppingBag className="w-4 h-4 text-ayurveda-gold" />
+      {/* Visual Commerce Actions Placeholder Area */}
+      <div className="p-5 rounded-2xl bg-sdv-cream/60 border border-sdv-border space-y-3">
+        <div className="flex items-center justify-between text-xs text-sdv-muted pb-2 border-b border-sdv-border">
+          <span className="font-semibold text-sdv-primary flex items-center gap-1.5">
+            <ShoppingBag className="w-4 h-4 text-sdv-gold" />
             <span>Product Purchase System</span>
           </span>
-          <span className="text-[11px] font-mono text-ayurveda-gold">[Phase 5 Feature]</span>
+          <span className="text-[11px] font-mono text-sdv-gold">[Development Preview]</span>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           <button
             disabled
-            className="w-full py-3 bg-ayurveda-green/20 text-ayurveda-green-dark font-semibold text-xs rounded-xl cursor-not-allowed flex items-center justify-center gap-2 border border-ayurveda-green/20"
+            className="w-full py-3 bg-sdv-primary/10 text-sdv-primary font-semibold text-xs rounded-xl cursor-not-allowed flex items-center justify-center gap-2 border border-sdv-border"
           >
             <Lock className="w-3.5 h-3.5" />
             <span>ADD TO CART</span>
           </button>
           <button
             disabled
-            className="w-full py-3 bg-ayurveda-gold/30 text-ayurveda-green-dark font-bold text-xs rounded-xl cursor-not-allowed flex items-center justify-center gap-2 border border-ayurveda-gold/40"
+            className="w-full py-3 bg-sdv-gold/30 text-sdv-primary font-bold text-xs rounded-xl cursor-not-allowed flex items-center justify-center gap-2 border border-sdv-gold/40"
           >
             <Lock className="w-3.5 h-3.5" />
             <span>BUY NOW</span>
           </button>
         </div>
 
-        <p className="text-[11px] text-center text-ayurveda-textMuted">
-          Cart & Checkout functionality will be activated in <strong>Phase 5</strong>.
+        <p className="text-[11px] text-center text-sdv-muted">
+          E-commerce purchasing functionality will be enabled in subsequent phases.
         </p>
       </div>
 
       {/* Micro Trust Pills */}
-      <div className="grid grid-cols-2 gap-3 pt-2 text-xs text-ayurveda-textMuted">
+      <div className="grid grid-cols-2 gap-3 pt-2 text-xs text-sdv-muted">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="w-4 h-4 text-ayurveda-green shrink-0" />
-          <span>[SDV Quality Assurance]</span>
+          <ShieldCheck className="w-4 h-4 text-sdv-green shrink-0" />
+          <span>Classical Formulation Standards</span>
         </div>
         <div className="flex items-center gap-2">
-          <Truck className="w-4 h-4 text-ayurveda-green shrink-0" />
-          <span>[Express Pan-India Shipping]</span>
+          <BookOpen className="w-4 h-4 text-sdv-green shrink-0" />
+          <span>Authoritative Ayurvedic Knowledge</span>
         </div>
       </div>
     </div>

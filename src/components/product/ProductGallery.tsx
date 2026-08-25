@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Badge } from "../ui/Badge";
+import { getFormulationImage } from "@/lib/categoryColors";
 
 interface ProductImageItem {
   id?: string;
@@ -12,35 +13,36 @@ interface ProductImageItem {
 interface ProductGalleryProps {
   images: ProductImageItem[];
   productName: string;
-  isBestSeller?: boolean;
-  isFeatured?: boolean;
+  categoryName?: string;
 }
 
 export function ProductGallery({
   images,
   productName,
-  isBestSeller,
-  isFeatured,
+  categoryName,
 }: ProductGalleryProps) {
-  const fallbackImage = "https://images.unsplash.com/photo-1608248597261-23d917f918e9?auto=format&fit=crop&w=800&q=80";
-  const galleryImages = images.length > 0 ? images : [{ url: fallbackImage, altText: productName }];
+  const defaultImage = getFormulationImage(categoryName || productName);
+  const galleryImages = images.length > 0
+    ? images.map(img => ({ ...img, url: getFormulationImage(categoryName || productName, img.url) }))
+    : [{ url: defaultImage, altText: productName }];
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   return (
     <div className="space-y-4">
       {/* Primary Main Image View */}
-      <div className="relative aspect-square rounded-2xl overflow-hidden bg-white border border-ayurveda-green/10 shadow-sm group">
+      <div className="relative aspect-square rounded-2xl overflow-hidden bg-white border border-sdv-border shadow-sm group">
         <img
-          src={galleryImages[selectedImageIndex]?.url || fallbackImage}
+          src={galleryImages[selectedImageIndex]?.url || defaultImage}
           alt={galleryImages[selectedImageIndex]?.altText || productName}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
 
-        {/* Badges Overlay */}
-        <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
-          {isBestSeller && <Badge variant="gold">Best Seller</Badge>}
-          {isFeatured && <Badge variant="green">Featured Formulation</Badge>}
+        {/* Development Badge Overlay */}
+        <div className="absolute top-4 left-4 flex flex-col gap-2 z-10 font-akshar">
+          <Badge variant="gold" className="text-[10px] uppercase font-bold">
+            Demo Product Media
+          </Badge>
         </div>
       </div>
 
@@ -53,8 +55,8 @@ export function ProductGallery({
               onClick={() => setSelectedImageIndex(idx)}
               className={`relative w-20 h-20 rounded-xl overflow-hidden bg-white border-2 shrink-0 transition-all ${
                 selectedImageIndex === idx
-                  ? "border-ayurveda-gold shadow-md scale-105"
-                  : "border-ayurveda-green/10 hover:border-ayurveda-green/40 opacity-70 hover:opacity-100"
+                  ? "border-sdv-gold shadow-md scale-105"
+                  : "border-sdv-border hover:border-sdv-primary/40 opacity-70 hover:opacity-100"
               }`}
             >
               <img

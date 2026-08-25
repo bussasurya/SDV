@@ -61,25 +61,25 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   }
 
   return (
-    <div className="w-full bg-ayurveda-cream min-h-screen py-8 sm:py-12">
+    <div className="w-full bg-sdv-cream min-h-screen py-8 sm:py-12">
       <Container size="lg" className="space-y-8 sm:space-y-12">
         
         {/* Breadcrumb Bar */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-ayurveda-textMuted overflow-x-auto pb-2">
-          <Link href="/" className="hover:text-ayurveda-green flex items-center gap-1">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-sdv-muted overflow-x-auto pb-2 font-akshar">
+          <Link href="/" className="hover:text-sdv-primary flex items-center gap-1">
             <Home className="w-3.5 h-3.5" />
             <span>Home</span>
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-ayurveda-green/30" />
-          <Link href="/shop" className="hover:text-ayurveda-green">
+          <ChevronRight className="w-3.5 h-3.5 text-sdv-border" />
+          <Link href="/shop" className="hover:text-sdv-primary">
             Products
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-ayurveda-green/30" />
-          <Link href={`/shop?category=${product.category.slug}`} className="hover:text-ayurveda-green">
+          <ChevronRight className="w-3.5 h-3.5 text-sdv-border" />
+          <Link href={`/shop?category=${product.category.slug}`} className="hover:text-sdv-primary">
             {product.category.name}
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-ayurveda-green/30" />
-          <span className="font-semibold text-ayurveda-green truncate max-w-[200px] sm:max-w-xs">
+          <ChevronRight className="w-3.5 h-3.5 text-sdv-border" />
+          <span className="font-semibold text-sdv-primary truncate max-w-[200px] sm:max-w-xs">
             {product.name}
           </span>
         </nav>
@@ -91,8 +91,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             <ProductGallery
               images={product.images}
               productName={product.name}
-              isBestSeller={product.isBestSeller}
-              isFeatured={product.isFeatured}
+              categoryName={product.category.name}
             />
           </div>
 
